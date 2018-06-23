@@ -45,7 +45,7 @@ cdef class Loop:
         bint _running
         bint _stopping
 
-        long _thread_id
+        uint64_t _thread_id
         bint _thread_is_main
 
         object _task_factory
@@ -177,12 +177,12 @@ cdef class Loop:
     cdef _track_process(self, UVProcess proc)
     cdef _untrack_process(self, UVProcess proc)
 
-    cdef _new_reader_future(self, sock)
-    cdef _new_writer_future(self, sock)
     cdef _add_reader(self, fd, Handle handle)
+    cdef _has_reader(self, fd)
     cdef _remove_reader(self, fd)
 
     cdef _add_writer(self, fd, Handle handle)
+    cdef _has_writer(self, fd)
     cdef _remove_writer(self, fd)
 
     cdef _sock_recv(self, fut, sock, n)
